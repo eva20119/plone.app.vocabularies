@@ -123,11 +123,16 @@ class UsersFactory(object):
     def __call__(self, context, query=''):
         if context is None:
             context = getSite()
-        users = getToolByName(context, 'acl_users')
-        return UsersVocabulary.fromItems(
-            users.searchUsers(fullname=query),
-            context
-        )
+        acl_users = getToolByName(context, 'acl_users')
+        users = acl_users.searchUsers(fullname=query)
+        users = (i for i in users if self.filter(i))
+        return UsersVocabulary.fromItems(users, context)
+
+    def filter(self, user):
+        """
+        ability to override to provide custom filtering
+        """
+        return True
 
 
 @implementer(ITerms, ISourceQueryView)

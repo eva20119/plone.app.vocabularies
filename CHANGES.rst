@@ -13,6 +13,10 @@ New features:
 - Add principals vocabularies which combines users and groups into one vocabulary
   [vangheem]
 
+- Add a simple way to filter users, groups, roles and permissions in custom
+  vocabularies that subclass the original.
+  [pbauer]
+
 Bug fixes:
 
 - *add item here*
@@ -38,7 +42,7 @@ Bug fixes:
   [seanupton]
 
 - plone/Products.CMFPlone#1268: use permissive vocabulary type
-  for ReallyUserFriendlyTypes, to avoid insertion of new types 
+  for ReallyUserFriendlyTypes, to avoid insertion of new types
   in plone.displayed_types (registry) from breaking GenericSetup
   profiles in add-ons.
   [seanupton]
