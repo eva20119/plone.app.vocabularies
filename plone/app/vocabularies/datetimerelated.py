@@ -16,10 +16,10 @@ PLMF = MessageFactory('plonelocales')
 
 @provider(IVocabularyFactory)
 def TimezonesFactory(context, query=None):
-    """Vocabulary for all timezones.
+    '''Vocabulary for all timezones.
 
     This are all timezones supported by pytz.
-    """
+    '''
     tz_list = [
         SimpleTerm(value=it, title=PLMF(it, default=it))
         for it in pytz.all_timezones
@@ -30,10 +30,10 @@ def TimezonesFactory(context, query=None):
 
 @provider(IVocabularyFactory)
 def CommonTimezonesFactory(context, query=None):
-    """Vocabulary for common timezones.
+    '''Vocabulary for common timezones.
 
     This are the timezones a user would choose from in a form.
-    """
+    '''
     tz_list = [
         SimpleTerm(value=it, title=PLMF(it, default=it))
         for it in pytz.common_timezones
@@ -44,8 +44,8 @@ def CommonTimezonesFactory(context, query=None):
 
 @provider(IVocabularyFactory)
 def AvailableTimezonesFactory(context, query=None):
-    """Vocabulary for available timezones, as set by in the controlpanel.
-    """
+    '''Vocabulary for available timezones, as set by in the controlpanel.
+    '''
     reg_key = 'plone.available_timezones'
     registry = getUtility(IRegistry)
     # check if 'plone.available_timezones' is in registry
@@ -71,7 +71,7 @@ WEEKDAY_PREFIXES = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
 @provider(IVocabularyFactory)
 def WeekdaysFactory(context):
-    """Vocabulary for Weekdays - full name
+    '''Vocabulary for Weekdays - full name
 
     Usage:
     ------
@@ -103,7 +103,7 @@ def WeekdaysFactory(context):
 
         >>> util(context).by_token['0'].title
         u'weekday_mon'
-    """
+    '''
     items = []
     for idx in range(len(WEEKDAY_PREFIXES)):
         msgstr = PLMF('weekday_{0}'.format(WEEKDAY_PREFIXES[idx]))
@@ -113,7 +113,7 @@ def WeekdaysFactory(context):
 
 @provider(IVocabularyFactory)
 def WeekdaysAbbrFactory(context):
-    """Vocabulary for Weekdays - abbreviated (3 char)
+    '''Vocabulary for Weekdays - abbreviated (3 char)
 
     Usage:
     ------
@@ -145,7 +145,7 @@ def WeekdaysAbbrFactory(context):
 
         >>> util(context).by_token['0'].title
         u'weekday_mon_abbr'
-    """
+    '''
     items = []
     for idx in range(len(WEEKDAY_PREFIXES)):
         msgstr = PLMF('weekday_{0}_abbr'.format(WEEKDAY_PREFIXES[idx]))
@@ -155,7 +155,7 @@ def WeekdaysAbbrFactory(context):
 
 @provider(IVocabularyFactory)
 def WeekdaysShortFactory(context):
-    """Vocabulary for Weekdays - Short (2 char)
+    '''Vocabulary for Weekdays - Short (2 char)
 
     Usage:
     ------
@@ -187,7 +187,7 @@ def WeekdaysShortFactory(context):
 
         >>> util(context).by_token['0'].title
         u'weekday_mon_short'
-    """
+    '''
     items = []
     for idx in range(len(WEEKDAY_PREFIXES)):
         msgstr = PLMF('weekday_{0}_short'.format(WEEKDAY_PREFIXES[idx]))
@@ -203,7 +203,7 @@ MONTH_PREFIXES = [
 
 @provider(IVocabularyFactory)
 def MonthFactory(context):
-    """Vocabulary for Month. Full name
+    '''Vocabulary for Month. Full name
 
     Usage:
 
@@ -227,7 +227,7 @@ def MonthFactory(context):
     Term values are all integers:
 
         >>> assert all(map(lambda t: type(t.value) is int, util(context)))
-    """
+    '''
     items = []
     for idx in range(len(MONTH_PREFIXES)):
         msgstr = PLMF('month_{0}'.format(MONTH_PREFIXES[idx]))
@@ -237,7 +237,7 @@ def MonthFactory(context):
 
 @provider(IVocabularyFactory)
 def MonthAbbrFactory(context):
-    """Vocabulary for Month. Abbreviated Name (3 char)
+    '''Vocabulary for Month. Abbreviated Name (3 char)
 
     Usage:
 
@@ -261,7 +261,7 @@ def MonthAbbrFactory(context):
     Term values are all integers:
 
         >>> assert all(map(lambda t: type(t.value) is int, util(context)))
-    """
+    '''
     items = []
     for idx in range(len(MONTH_PREFIXES)):
         msgstr = PLMF('month_{0}_abbr'.format(MONTH_PREFIXES[idx]))

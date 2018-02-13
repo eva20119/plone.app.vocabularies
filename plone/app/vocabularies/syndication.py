@@ -55,8 +55,8 @@ class SyndicatableFeedItems(object):
             'portal_type': ('Folder', 'Collection', 'Topic'),
             'path': {
                 'query': site_path,
-                'depth': 2
-            }
+                'depth': 2,
+            },
         }
         items = []
         for brain in catalog(**query):

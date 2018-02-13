@@ -14,8 +14,8 @@ PMF = MessageFactory('plone')
 
 @provider(IVocabularyFactory)
 def ScalesVocabulary(context):
-    """Obtains available scales from registry
-    """
+    '''Obtains available scales from registry
+    '''
     terms = []
     allowedSizes = getAllowedSizes()
     if allowedSizes is not None:
@@ -25,8 +25,8 @@ def ScalesVocabulary(context):
                 default='{0:s} ${{width}}x${{height}}'.format(scale),
                 mapping={
                     'width': str(width),
-                    'height': str(height)
-                }
+                    'height': str(height),
+                },
             )
             terms.append(SimpleTerm(scale, scale, translated))
     return SimpleVocabulary(terms)

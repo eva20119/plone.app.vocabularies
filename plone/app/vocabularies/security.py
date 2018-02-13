@@ -16,7 +16,7 @@ PMF = MessageFactory('plone')
 
 @implementer(IVocabularyFactory)
 class RolesVocabulary(object):
-    """Vocabulary factory for roles in the portal
+    '''Vocabulary factory for roles in the portal
 
       >>> from zope.component import queryUtility
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -45,7 +45,7 @@ class RolesVocabulary(object):
       >>> manager = roles.by_token['Manager']
       >>> manager.title, manager.token, manager.value
       (u'Manager', 'Manager', 'Manager')
-    """
+    '''
 
     def __call__(self, context):
         site = getSite()
@@ -76,7 +76,7 @@ RolesVocabularyFactory = RolesVocabulary()
 
 @implementer(IVocabularyFactory)
 class GroupsVocabulary(object):
-    """Vocabulary factory for groups in the portal
+    '''Vocabulary factory for groups in the portal
 
       >>> from zope.component import queryUtility
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -117,7 +117,7 @@ class GroupsVocabulary(object):
       >>> editors = groups.by_token['editors']
       >>> editors.title, editors.token, editors.value
       ('Editors', 'editors', 'editors')
-    """
+    '''
 
     def __call__(self, context):
         items = []
@@ -136,8 +136,8 @@ GroupsVocabularyFactory = GroupsVocabulary()
 
 @implementer(IVocabularyFactory)
 class PermissionsVocabulary(object):
-    """Vocabulary factory for permissions.
-    """
+    '''Vocabulary factory for permissions.
+    '''
 
     def __call__(self, context):
         site = getSite()

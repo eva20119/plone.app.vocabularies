@@ -10,7 +10,7 @@ from zope.site.hooks import getSite
 
 @implementer(IVocabularyFactory)
 class AvailableContentLanguageVocabulary(object):
-    """Vocabulary factory for available content languages in the portal.
+    '''Vocabulary factory for available content languages in the portal.
 
       >>> from zope.component import queryUtility
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -40,7 +40,7 @@ class AvailableContentLanguageVocabulary(object):
       >>> de = languages.by_token['de']
       >>> de.title, de.token, de.value
       ('Deutsch', 'de', 'de')
-    """
+    '''
 
     def __call__(self, context):
         items = [SimpleTerm('en', 'en', 'English')]  # default, only english
@@ -60,7 +60,7 @@ AvailableContentLanguageVocabularyFactory = AvailableContentLanguageVocabulary(
 
 @implementer(IVocabularyFactory)
 class SupportedContentLanguageVocabulary(object):
-    """Vocabulary factory for supported content languages in the portal.
+    '''Vocabulary factory for supported content languages in the portal.
 
       >>> from zope.component import queryUtility
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -93,7 +93,7 @@ class SupportedContentLanguageVocabulary(object):
       >>> de = languages.by_token['de']
       >>> de.title, de.token, de.value
       ('Deutsch', 'de', 'de')
-    """
+    '''
 
     def __call__(self, context):
         items = []

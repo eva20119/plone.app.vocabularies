@@ -20,17 +20,17 @@ def safe_encode(value):
 
 
 def safe_simpleterm_from_value(value):
-    """create SimpleTerm from an untrusted value.
+    '''create SimpleTerm from an untrusted value.
 
     - token need cleaned up: Vocabulary term tokens *must* be 7 bit values
     - anything for display has to be cleaned up, titles *must* be unicode
-    """
+    '''
     return SimpleTerm(value, b2a_qp(safe_encode(value)), safe_unicode(value))
 
 
 def safe_simplevocabulary_from_values(values, query=None):
-    """Creates (filtered) SimpleVocabulary from iterable of untrusted values.
-    """
+    '''Creates (filtered) SimpleVocabulary from iterable of untrusted values.
+    '''
     items = [
         safe_simpleterm_from_value(i)
         for i in values
@@ -41,7 +41,7 @@ def safe_simplevocabulary_from_values(values, query=None):
 
 @implementer(ITermWithDescription)
 class TermWithDescription(SimpleTerm):
-    """
+    '''
       >>> term = TermWithDescription('value', 'token', 'title')
       >>> term.value, term.token, term.title, term.description
       ('value', 'token', 'title', None)
@@ -50,7 +50,7 @@ class TermWithDescription(SimpleTerm):
       ...                            description='description')
       >>> term.value, term.token, term.title, term.description
       ('value', 'token', 'title', 'description')
-    """
+    '''
 
     def __init__(self, value, token, title, description=None):
         super(TermWithDescription, self).__init__(
@@ -60,7 +60,7 @@ class TermWithDescription(SimpleTerm):
 
 
 class BrowsableTerm(TermWithDescription):
-    """
+    '''
       >>> term = BrowsableTerm('value')
       >>> term.value, term.token, term.title, term.description
       ('value', 'value', None, None)
@@ -77,7 +77,7 @@ class BrowsableTerm(TermWithDescription):
       ('browse_token', 'parent_token')
       >>> IBrowsableTerm.providedBy(term)
       True
-    """
+    '''
 
     def __init__(
         self,

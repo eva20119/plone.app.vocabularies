@@ -39,7 +39,7 @@ except ImportError:
 
 
 def parse_query(query, path_prefix=''):
-    """ Parse the query string and turn it into a dictionary for querying the
+    ''' Parse the query string and turn it into a dictionary for querying the
         catalog.
 
         We want to find anything which starts with the given string, so we add
@@ -87,7 +87,7 @@ def parse_query(query, path_prefix=''):
         >>> parse_query('path:/dummy', path_prefix='/portal')
         {'path': {'query': '/portal/dummy', 'depth': 1}}
 
-    """
+    '''
     query_parts = query.split()
     query = {'SearchableText': []}
     for part in query_parts:
@@ -111,7 +111,7 @@ def parse_query(query, path_prefix=''):
 @implementer(ISource)
 @provider(IContextSourceBinder)
 class SearchableTextSource(object):
-    """
+    '''
       >>> from plone.app.vocabularies.tests.base import Brain
       >>> from plone.app.vocabularies.tests.base import DummyCatalog
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -156,7 +156,7 @@ class SearchableTextSource(object):
       >>> source = SearchableTextSource(context, default_query='default')
       >>> list(source.search(''))
       ['1234', '2345']
-    """
+    '''
 
     def __init__(self, context, base_query={}, default_query=None):
         self.context = context
@@ -168,8 +168,8 @@ class SearchableTextSource(object):
         self.encoding = 'utf-8'
 
     def __contains__(self, value):
-        """Return whether the value is available in this source
-        """
+        '''Return whether the value is available in this source
+        '''
         if not value:
             return True
         elif self.catalog.getrid(self.portal_path + value) is None:
@@ -203,7 +203,7 @@ class SearchableTextSource(object):
 
 @implementer(IContextSourceBinder)
 class SearchableTextSourceBinder(object):
-    """Use this to instantiate a new SearchableTextSource with custom
+    '''Use this to instantiate a new SearchableTextSource with custom
     parameters. For example:
 
     target_folder = schema.Choice(
@@ -245,7 +245,7 @@ class SearchableTextSourceBinder(object):
 
       >>> source.base_query == query
       True
-    """
+    '''
 
     def __init__(self, query, default_query=None):
         self.query = query
@@ -261,7 +261,7 @@ class SearchableTextSourceBinder(object):
 
 @implementer(ITerms, ISourceQueryView)
 class QuerySearchableTextSourceView(object):
-    """
+    '''
       >>> from plone.app.vocabularies.tests.base import DummyCatalog
       >>> from plone.app.vocabularies.tests.base import create_context
       >>> from plone.app.vocabularies.tests.base import DummyTool
@@ -325,7 +325,7 @@ class QuerySearchableTextSourceView(object):
       Titles need to be unicode:
       >>> view.getTerm(list(view.results('t'))[0]).title
       u'/foo'
-    """
+    '''
 
     template = ViewPageTemplateFile('searchabletextsource.pt')
 
@@ -402,7 +402,7 @@ class QuerySearchableTextSourceView(object):
 
 @implementer(IVocabularyFactory)
 class KeywordsVocabulary(object):
-    """Vocabulary factory listing all catalog keywords from the 'Subject' index
+    '''Vocabulary factory listing all catalog keywords from the 'Subject' index
 
         >>> from plone.app.vocabularies.tests.base import DummyCatalog
         >>> from plone.app.vocabularies.tests.base import create_context
@@ -457,15 +457,15 @@ class KeywordsVocabulary(object):
 
 
 
-    """
+    '''
     # Allow users to customize the index to easily create
     # KeywordVocabularies for other keyword indexes
     keyword_index = 'Subject'
     path_index = 'path'
 
     def section(self, context):
-        """gets section from which subjects are used.
-        """
+        '''gets section from which subjects are used.
+        '''
         registry = queryUtility(IRegistry)
         if registry is None:
             return None
@@ -483,8 +483,8 @@ class KeywordsVocabulary(object):
         return safe_simplevocabulary_from_values(index._index, query=kwfilter)
 
     def keywords_of_section(self, section, kwfilter):
-        """Valid keywords under the given section.
-        """
+        '''Valid keywords under the given section.
+        '''
         pcat = getToolByName(section, 'portal_catalog')
         cat = pcat._catalog
         path_idx = cat.indexes[self.path_index]
@@ -588,7 +588,7 @@ class CatalogVocabulary(SlicableVocabulary):
 
 @implementer(IVocabularyFactory)
 class CatalogVocabularyFactory(object):
-    """
+    '''
     Test application of Navigation Root:
 
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -615,7 +615,7 @@ class CatalogVocabularyFactory(object):
       >>> [t.token for t in factory(nav_root)]
       ['/dummy/sub-site', '/dummy/sub-site/ghij']
 
-    """
+    '''
 
     # We want to get rid of this and use CatalogSource instead,
     # but we can't in Plone versions that support
@@ -646,7 +646,7 @@ class CatalogVocabularyFactory(object):
 
 @implementer(ISource)
 class CatalogSource(object):
-    """Catalog source for use with Choice fields.
+    '''Catalog source for use with Choice fields.
 
     When instantiating the source, you can pass keyword arguments
     which will become the catalog query used to find terms.
@@ -685,18 +685,18 @@ class CatalogSource(object):
       >>> source.search_catalog({'foo': 'baz'})
       ['asdf']
 
-    """
+    '''
 
     def __init__(self, context=None, **query):
         self.query = query
 
     def __contains__(self, value):
-        """used during validation to make sure the selected item is found with
+        '''used during validation to make sure the selected item is found with
         the specified query.
 
         value can be either a string (hex value of uuid or path) or a plone
         content object.
-        """
+        '''
         if not isinstance(value, six.string_types):
             # here we have a content and fetch the uuid as hex value
             value = IUUID(value)

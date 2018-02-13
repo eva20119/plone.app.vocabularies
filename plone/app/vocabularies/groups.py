@@ -23,7 +23,7 @@ except ImportError:
 @implementer(ISource)
 @provider(IContextSourceBinder)
 class GroupsSource(object):
-    """
+    '''
       >>> from plone.app.vocabularies.tests.base import create_context
       >>> from plone.app.vocabularies.tests.base import DummyTool
 
@@ -54,15 +54,15 @@ class GroupsSource(object):
 
       >>> source.get('group1'), source.get('noone')
       ('group1', None)
-    """
+    '''
 
     def __init__(self, context):
         self.context = context
         self.users = getToolByName(context, 'acl_users')
 
     def __contains__(self, value):
-        """Return whether the value is available in this source
-        """
+        '''Return whether the value is available in this source
+        '''
         if self.get(value) is None:
             return False
         return True
@@ -85,7 +85,7 @@ class GroupsSource(object):
 
 @implementer(ITerms, ISourceQueryView)
 class GroupsSourceQueryView(object):
-    """
+    '''
       >>> from plone.app.vocabularies.tests.base import create_context
       >>> from plone.app.vocabularies.tests.base import DummyTool
       >>> from plone.app.vocabularies.tests.base import Request
@@ -142,7 +142,7 @@ class GroupsSourceQueryView(object):
       >>> view = GroupsSourceQueryView(source, request)
       >>> view.results('t')
       ['group1', 'group2']
-    """
+    '''
 
     template = ViewPageTemplateFile('searchabletextsource.pt')
 

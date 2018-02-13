@@ -9,7 +9,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 @implementer(IVocabularyFactory)
 class ActionCategoriesVocabulary(object):
-    """Provides an actions categories vocabulary"""
+    '''Provides an actions categories vocabulary'''
 
     def __call__(self, context):
         portal_actions = getToolByName(context, 'portal_actions')
@@ -31,7 +31,7 @@ ActionCategoriesVocabularyFactory = ActionCategoriesVocabulary()
 
 @implementer(IVocabularyFactory)
 class PortalActionCategoriesVocabulary(object):
-    """Provides portal action categories vocabulary."""
+    '''Provides portal action categories vocabulary.'''
 
     def __call__(self, context):
         portal_actions = getToolByName(context, 'portal_actions')

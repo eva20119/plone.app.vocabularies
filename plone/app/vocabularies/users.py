@@ -42,7 +42,7 @@ def _createUserTerm(userid, context=None, acl_users=None):
 @implementer(ISource)
 @provider(IContextSourceBinder)
 class UsersSource(object):
-    """
+    '''
       >>> from plone.app.vocabularies.tests.base import create_context
       >>> from plone.app.vocabularies.tests.base import DummyTool
 
@@ -70,15 +70,15 @@ class UsersSource(object):
 
       >>> source.get('user1'), source.get('noone')
       ('user1', None)
-    """
+    '''
 
     def __init__(self, context):
         self.context = context
         self.users = getToolByName(context, 'acl_users')
 
     def __contains__(self, value):
-        """Return whether the value is available in this source
-        """
+        '''Return whether the value is available in this source
+        '''
         if self.get(value) is None:
             return False
         return True
@@ -125,7 +125,7 @@ class UsersVocabulary(SlicableVocabulary):
 
 @implementer(IVocabularyFactory)
 class UsersFactory(object):
-    """Factory creating a UsersVocabulary
+    '''Factory creating a UsersVocabulary
 
     >>> from plone.app.vocabularies.tests.base import create_context
     >>> from plone.app.vocabularies.tests.base import DummyTool
@@ -167,7 +167,7 @@ class UsersFactory(object):
     setting
     >>> [x.title for x in factory(context, '1')]
     ['user1']
-    """
+    '''
 
     def should_search(self, query):
         ''' Test if we should search for users
@@ -190,7 +190,7 @@ class UsersFactory(object):
 
 @implementer(ITerms, ISourceQueryView)
 class UsersSourceQueryView(object):
-    """
+    '''
       >>> from plone.app.vocabularies.tests.base import create_context
       >>> from plone.app.vocabularies.tests.base import DummyTool
       >>> from plone.app.vocabularies.tests.base import Request
@@ -247,7 +247,7 @@ class UsersSourceQueryView(object):
       >>> view = UsersSourceQueryView(source, request)
       >>> view.results('t')
       ['user1', 'user2']
-    """
+    '''
 
     template = ViewPageTemplateFile('searchabletextsource.pt')
 

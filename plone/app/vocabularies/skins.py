@@ -13,7 +13,7 @@ _ = MessageFactory('plone')
 
 @implementer(IVocabularyFactory)
 class SkinsVocabulary(object):
-    """Vocabulary factory for skins.
+    '''Vocabulary factory for skins.
 
       >>> from zope.component import queryUtility
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -48,7 +48,7 @@ class SkinsVocabulary(object):
       >>> term = skins.by_token['Plone Default']
       >>> term.title, term.token, term.value
       (u'(Unstyled)', 'Plone Default', 'Plone Default')
-    """
+    '''
 
     def __call__(self, context):
         terms = []

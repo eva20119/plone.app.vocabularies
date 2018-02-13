@@ -11,12 +11,12 @@ from zope.site.hooks import getSite
 
 
 def getAllowedContentTypes(context):
-    """ computes the list of allowed content types ...
+    ''' computes the list of allowed content types ...
     Here the mime types allowed in text fields are meant.
 
     It does so by subtracting the site property blacklist from the list of
     allowable (overall available) types.
-    """
+    '''
     allowable_types = getAllowableContentTypes(context)
     forbidden_types = getForbiddenContentTypes(context)
     allowed_types = [
@@ -26,7 +26,7 @@ def getAllowedContentTypes(context):
 
 
 def getAllowableContentTypes(context):
-    """ retrieves the list of available content types (aka mime-types) ...
+    ''' retrieves the list of available content types (aka mime-types) ...
 
     ... by querying portal transforms.
 
@@ -34,16 +34,16 @@ def getAllowableContentTypes(context):
     This returns a list of mimetypes that can be used as input for textfields
     by building a list of the inputs beginning with "text/" of all
     transforms.
-    """
+    '''
     portal_transforms = getToolByName(context, 'portal_transforms')
     return portal_transforms.listAvailableTextInputs()
 
 
 def getForbiddenContentTypes(context):
-    """Method for retrieving the site property 'forbidden_contenttypes'.
+    '''Method for retrieving the site property 'forbidden_contenttypes'.
 
     This is a list of mime-types not allowed in text input fields.
-    """
+    '''
     portal_properties = getToolByName(context, 'portal_properties', None)
     if portal_properties is not None:
         return []
@@ -57,7 +57,7 @@ def getForbiddenContentTypes(context):
 
 @implementer(IVocabularyFactory)
 class AllowableContentTypesVocabulary(object):
-    """Vocabulary factory for allowable content types.
+    '''Vocabulary factory for allowable content types.
 
     A list of mime-types that can be used as input for textfields.
 
@@ -85,7 +85,7 @@ class AllowableContentTypesVocabulary(object):
       >>> doc = types.by_token['text/plain']
       >>> doc.title, doc.token, doc.value
       ('text/plain', 'text/plain', 'text/plain')
-    """
+    '''
 
     def __call__(self, context):
         site = getSite()
@@ -101,7 +101,7 @@ AllowableContentTypesVocabularyFactory = AllowableContentTypesVocabulary()
 
 @implementer(IVocabularyFactory)
 class AllowedContentTypesVocabulary(object):
-    """Vocabulary factory for allowed content types.
+    '''Vocabulary factory for allowed content types.
 
     A list of mime-types that is allowed to be used as input for textfields.
 
@@ -139,7 +139,7 @@ class AllowedContentTypesVocabulary(object):
       >>> doc = types.by_token['text/plain']
       >>> doc.title, doc.token, doc.value
       ('text/plain', 'text/plain', 'text/plain')
-    """
+    '''
 
     def __call__(self, context):
         site = getSite()
@@ -153,7 +153,7 @@ AllowedContentTypesVocabularyFactory = AllowedContentTypesVocabulary()
 
 @implementer(IVocabularyFactory)
 class PortalTypesVocabulary(object):
-    """Vocabulary factory for portal types.
+    '''Vocabulary factory for portal types.
 
       >>> from zope.component import queryUtility
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -174,7 +174,7 @@ class PortalTypesVocabulary(object):
       >>> doc = types.by_token['Document']
       >>> doc.title, doc.token, doc.value
       (u'Page', 'Document', 'Document')
-    """
+    '''
 
     def __call__(self, context):
         site = getSite()
@@ -194,7 +194,7 @@ PortalTypesVocabularyFactory = PortalTypesVocabulary()
 
 @implementer(IVocabularyFactory)
 class UserFriendlyTypesVocabulary(object):
-    """Vocabulary factory for user friendly portal types.
+    '''Vocabulary factory for user friendly portal types.
 
       >>> from zope.component import queryUtility
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -222,7 +222,7 @@ class UserFriendlyTypesVocabulary(object):
       >>> doc = types.by_token['Document']
       >>> doc.title, doc.token, doc.value
       (u'Page', 'Document', 'Document')
-    """
+    '''
 
     def __call__(self, context):
         site = getSite()
@@ -262,7 +262,7 @@ BAD_TYPES = [
 
 @implementer(IVocabularyFactory)
 class ReallyUserFriendlyTypesVocabulary(object):
-    """Vocabulary factory for really user friendly portal types.
+    '''Vocabulary factory for really user friendly portal types.
 
     Usage:
 
@@ -294,7 +294,7 @@ class ReallyUserFriendlyTypesVocabulary(object):
         >>> doc = types.by_token['Document']
         >>> doc.title, doc.token, doc.value
         (u'Page', 'Document', 'Document')
-    """
+    '''
 
     def __call__(self, context):
         site = getSite()

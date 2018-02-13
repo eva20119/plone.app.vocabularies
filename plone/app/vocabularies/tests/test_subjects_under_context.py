@@ -12,7 +12,7 @@ class TestKeywordsUnderContext(unittest.TestCase):
     layer = PAVocabularies_INTEGRATION_TESTING
 
     def setUp(self):
-        """Custom setup for tests."""
+        '''Custom setup for tests.'''
         self.portal = self.layer['portal']
 
         from plone.app.vocabularies.tests import base

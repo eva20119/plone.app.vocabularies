@@ -11,7 +11,8 @@ class PAVocabulariesLayer(PloneSandboxLayer):
         # Load ZCML
         import plone.app.vocabularies
         self.loadZCML(
-            package=plone.app.vocabularies, context=configurationContext
+            package=plone.app.vocabularies,
+            context=configurationContext,
         )
 
 

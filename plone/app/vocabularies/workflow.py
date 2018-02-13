@@ -16,7 +16,7 @@ _ = MessageFactory('plone')
 
 @implementer(IVocabularyFactory)
 class WorkflowsVocabulary(object):
-    """Vocabulary factory for workflows.
+    '''Vocabulary factory for workflows.
 
       >>> from zope.component import queryUtility
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -53,7 +53,7 @@ class WorkflowsVocabulary(object):
       >>> noticias = workflows.by_token['noticias']
       >>> noticias.title == 'Workflow de Notícias'.decode('utf-8')
       True
-    """
+    '''
 
     def __call__(self, context):
         items = []
@@ -72,7 +72,7 @@ WorkflowsVocabularyFactory = WorkflowsVocabulary()
 
 @implementer(IVocabularyFactory)
 class WorkflowStatesVocabulary(object):
-    """Vocabulary factory for workflow states.
+    '''Vocabulary factory for workflow states.
 
       >>> from zope.component import queryUtility
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -104,7 +104,7 @@ class WorkflowStatesVocabulary(object):
       >>> rev = states.by_token['revisao']
       >>> rev.title == 'Revisão [revisao]'.decode('utf-8')
       True
-    """
+    '''
 
     def __call__(self, context):
         site = getSite()
@@ -140,7 +140,7 @@ WorkflowStatesVocabularyFactory = WorkflowStatesVocabulary()
 
 @implementer(IVocabularyFactory)
 class WorkflowTransitionsVocabulary(object):
-    """Vocabulary factory for workflow transitions
+    '''Vocabulary factory for workflow transitions
 
       >>> from zope.component import queryUtility
       >>> from plone.app.vocabularies.tests.base import create_context
@@ -195,7 +195,7 @@ class WorkflowTransitionsVocabulary(object):
       >>> publ = transitions.by_token['publicacao']
       >>> publ.title == u'Publicação [publicacao]'
       True
-    """
+    '''
 
     def __call__(self, context):
         site = getSite()
