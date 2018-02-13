@@ -14,7 +14,8 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- The code is flake8 compliant
+  [ale-rt]
 
 
 4.0.6 (2018-02-11)
