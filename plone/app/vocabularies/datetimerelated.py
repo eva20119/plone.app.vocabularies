@@ -10,6 +10,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 import pytz
 
+
 PLMF = MessageFactory('plonelocales')
 
 

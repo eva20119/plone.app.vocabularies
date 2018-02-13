@@ -8,6 +8,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 import six
 
+
 PMF = MessageFactory('plone')
 
 

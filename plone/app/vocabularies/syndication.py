@@ -9,6 +9,7 @@ from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+
 try:
     # XXX: this is a circular dependency (not declared in setup.py)
     from Products.CMFPlone.interfaces.syndication import ISiteSyndicationSettings  # noqa
