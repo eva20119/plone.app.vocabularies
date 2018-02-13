@@ -7,7 +7,6 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.site.hooks import getSite
 
-
 _ = MessageFactory('plone')
 
 
@@ -60,13 +59,12 @@ class SkinsVocabulary(object):
             if 'Plone Default' in items:
                 terms = [
                     SimpleTerm(
-                        'Plone Default',
-                        'Plone Default',
-                        _(u'(Unstyled)')
+                        'Plone Default', 'Plone Default', _(u'(Unstyled)')
                     )
                 ]
                 items.remove('Plone Default')
             terms += [SimpleTerm(i, i, i) for i in items]
         return SimpleVocabulary(terms)
+
 
 SkinsVocabularyFactory = SkinsVocabulary()

@@ -20,8 +20,7 @@ def getAllowedContentTypes(context):
     allowable_types = getAllowableContentTypes(context)
     forbidden_types = getForbiddenContentTypes(context)
     allowed_types = [
-        ctype for ctype in allowable_types
-        if ctype not in forbidden_types
+        ctype for ctype in allowable_types if ctype not in forbidden_types
     ]
     return allowed_types
 
@@ -96,6 +95,7 @@ class AllowableContentTypesVocabulary(object):
         items = [SimpleTerm(i, i, i) for i in sorted(items)]
         return SimpleVocabulary(items)
 
+
 AllowableContentTypesVocabularyFactory = AllowableContentTypesVocabulary()
 
 
@@ -147,6 +147,7 @@ class AllowedContentTypesVocabulary(object):
         items = [SimpleTerm(i, i, i) for i in sorted(items)]
         return SimpleVocabulary(items)
 
+
 AllowedContentTypesVocabularyFactory = AllowedContentTypesVocabulary()
 
 
@@ -186,6 +187,7 @@ class PortalTypesVocabulary(object):
                  for t in ttool.listContentTypes()]
         items = [SimpleTerm(i[1], i[1], i[0]) for i in sorted(items)]
         return SimpleVocabulary(items)
+
 
 PortalTypesVocabularyFactory = PortalTypesVocabulary()
 
@@ -230,16 +232,14 @@ class UserFriendlyTypesVocabulary(object):
             return SimpleVocabulary([])
 
         request = aq_get(ttool, 'REQUEST', None)
-        items = [
-            (translate(ttool[t].Title(), context=request), t)
-            for t in ptool.getUserFriendlyTypes()
-        ]
+        items = [(translate(ttool[t].Title(), context=request), t)
+                 for t in ptool.getUserFriendlyTypes()]
         items.sort()
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return SimpleVocabulary(items)
 
-UserFriendlyTypesVocabularyFactory = UserFriendlyTypesVocabulary()
 
+UserFriendlyTypesVocabularyFactory = UserFriendlyTypesVocabulary()
 
 BAD_TYPES = [
     'ATBooleanCriterion',
@@ -303,13 +303,12 @@ class ReallyUserFriendlyTypesVocabulary(object):
             return SimpleVocabulary([])
 
         request = aq_get(ttool, 'REQUEST', None)
-        items = [
-            (translate(ttool[t].Title(), context=request), t)
-            for t in ttool.listContentTypes()
-            if t not in BAD_TYPES
-        ]
+        items = [(translate(ttool[t].Title(), context=request), t)
+                 for t in ttool.listContentTypes()
+                 if t not in BAD_TYPES]
         items.sort()
         items = [SimpleTerm(i[1], i[1], i[0]) for i in items]
         return PermissiveVocabulary(items)
+
 
 ReallyUserFriendlyTypesVocabularyFactory = ReallyUserFriendlyTypesVocabulary()

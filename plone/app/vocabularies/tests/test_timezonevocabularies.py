@@ -15,8 +15,7 @@ class TimezoneTest(unittest.TestCase):
 
     def test_timezone_vocabulary(self):
         tzvocab = getUtility(
-            IVocabularyFactory,
-            'plone.app.vocabularies.Timezones'
+            IVocabularyFactory, 'plone.app.vocabularies.Timezones'
         )
         tz_list = [item.value for item in tzvocab(self.portal)]
         self.assertTrue('Africa/Abidjan' in tz_list)
@@ -24,8 +23,7 @@ class TimezoneTest(unittest.TestCase):
 
     def test_timezone_vocabulary_query(self):
         tzvocab = getUtility(
-            IVocabularyFactory,
-            'plone.app.vocabularies.Timezones'
+            IVocabularyFactory, 'plone.app.vocabularies.Timezones'
         )
         tz_list = [item.value for item in tzvocab(self.portal, query='vienna')]
         self.assertTrue('Europe/Vienna' in tz_list)
@@ -42,13 +40,15 @@ class TimezoneTest(unittest.TestCase):
         # this works only for plone.app.event 2.0
         # initially, all common zones are available in AvailableTimezones
         common_zones_vocab = getUtility(
-            IVocabularyFactory,
-            'plone.app.vocabularies.CommonTimezones'
-        )(self.portal)
+            IVocabularyFactory, 'plone.app.vocabularies.CommonTimezones'
+        )(
+            self.portal
+        )
         avail_zones_vocab = getUtility(
-            IVocabularyFactory,
-            'plone.app.vocabularies.AvailableTimezones'
-        )(self.portal)
+            IVocabularyFactory, 'plone.app.vocabularies.AvailableTimezones'
+        )(
+            self.portal
+        )
         self.assertTrue(len(common_zones_vocab) > len(avail_zones_vocab) > 0)
 
         # let's limit it to the first 10 zones of all_zones
@@ -59,9 +59,10 @@ class TimezoneTest(unittest.TestCase):
         # those changes
         del avail_zones_vocab
         avail_zones_vocab = getUtility(
-            IVocabularyFactory,
-            'plone.app.vocabularies.AvailableTimezones'
-        )(self.portal)
+            IVocabularyFactory, 'plone.app.vocabularies.AvailableTimezones'
+        )(
+            self.portal
+        )
 
         # the length of the avail_zones_vocab is now 10
         self.assertTrue(len(common_zones_vocab) > len(avail_zones_vocab) > 0)
@@ -70,8 +71,7 @@ class TimezoneTest(unittest.TestCase):
         # Test querying AvailableTimezones vocabulary
         reg[reg_key] = common_zones
         filtered_zones_vocab = getUtility(
-            IVocabularyFactory,
-            'plone.app.vocabularies.AvailableTimezones'
+            IVocabularyFactory, 'plone.app.vocabularies.AvailableTimezones'
         )(self.portal, query='vienna')
         # filtered all items down to one
         self.assertEqual(len(filtered_zones_vocab), 1)

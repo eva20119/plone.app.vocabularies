@@ -10,7 +10,6 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.site.hooks import getSite
 
-
 PMF = MessageFactory('plone')
 
 
@@ -69,6 +68,7 @@ class RolesVocabulary(object):
         items.sort(key=attrgetter('title'))
 
         return SimpleVocabulary(items)
+
 
 RolesVocabularyFactory = RolesVocabulary()
 
@@ -129,6 +129,7 @@ class GroupsVocabulary(object):
             items = [SimpleTerm(i[0], i[0], i[1]) for i in items]
         return SimpleVocabulary(items)
 
+
 GroupsVocabularyFactory = GroupsVocabulary()
 
 
@@ -139,8 +140,11 @@ class PermissionsVocabulary(object):
 
     def __call__(self, context):
         site = getSite()
-        items = [SimpleTerm(perm, perm, perm)
-                 for perm in site.possible_permissions()]
+        items = [
+            SimpleTerm(perm, perm, perm)
+            for perm in site.possible_permissions()
+        ]
         return SimpleVocabulary(items)
+
 
 PermissionsVocabularyFactory = PermissionsVocabulary()

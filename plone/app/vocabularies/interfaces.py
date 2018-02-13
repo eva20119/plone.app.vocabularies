@@ -12,7 +12,8 @@ class ITermWithDescription(Interface):
         'description',
         """Description of the term, which will be displayed to distinguish
            between terms with similar labels.
-        """)
+        """
+    )
 
 
 class IBrowsableTerm(Interface):
@@ -27,7 +28,8 @@ class IBrowsableTerm(Interface):
 
         The value of this attribute must be a non-empty 7-bit string.
         Control characters are not allowed.
-        """)
+        """
+    )
 
     parent_token = Attribute(
         'parent_token',
@@ -36,7 +38,8 @@ class IBrowsableTerm(Interface):
 
         The value of this attribute must be a non-empty 7-bit string.
         Control characters are not allowed.
-        """)
+        """
+    )
 
 
 class ISlicableVocabulary(IVocabularyTokenized):
@@ -55,4 +58,3 @@ class IPermissiveVocabulary(IVocabularyTokenized):
         vocabulary about to be mutated with insertion of a value not
         yet within).
         """
-

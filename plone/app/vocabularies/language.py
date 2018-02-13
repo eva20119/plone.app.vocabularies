@@ -53,7 +53,9 @@ class AvailableContentLanguageVocabulary(object):
             items = [SimpleTerm(i[0], i[0], i[1]) for i in items]
         return SimpleVocabulary(items)
 
-AvailableContentLanguageVocabularyFactory = AvailableContentLanguageVocabulary()  # noqa
+
+AvailableContentLanguageVocabularyFactory = AvailableContentLanguageVocabulary(
+)  # noqa
 
 
 @implementer(IVocabularyFactory)
@@ -100,18 +102,17 @@ class SupportedContentLanguageVocabulary(object):
         if ltool is not None:
             items = ltool.listSupportedLanguages()
             all_langs = ltool.getAvailableLanguages()
-            items = [
-                (l[0], all_langs[l[0]].get('native', l[1]))
-                for l in items
-            ]
+            items = [(l[0], all_langs[l[0]].get('native', l[1]))
+                     for l in items]
             items.sort(key=itemgetter(1))
             items = [
                 SimpleTerm(
-                    i[0],
-                    i[0],
+                    i[0], i[0],
                     all_langs.get(i[0], {}).get('native', i[1])
                 ) for i in items
             ]
         return SimpleVocabulary(items)
 
-SupportedContentLanguageVocabularyFactory = SupportedContentLanguageVocabulary()  # noqa
+
+SupportedContentLanguageVocabularyFactory = SupportedContentLanguageVocabulary(
+)  # noqa

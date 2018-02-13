@@ -17,7 +17,10 @@ class TestKeywordsUnderContext(unittest.TestCase):
 
         from plone.app.vocabularies.tests import base
         context = base.create_context()
-        rids = ('1', '2',)
+        rids = (
+            '1',
+            '2',
+        )
         tool = base.DummyCatalog(rids)
         context.portal_catalog = tool
         context.portal_url = base.DummyUrlTool(context)
@@ -38,17 +41,13 @@ class TestKeywordsUnderContext(unittest.TestCase):
         alsoProvides(self.navroot2, INavigationRoot)
 
         self.doc1 = base.DummyContentWithParent(
-            'doc1',
-            subjects=self.subjects_1,
-            parent=self.navroot1
+            'doc1', subjects=self.subjects_1, parent=self.navroot1
         )
         kwindex._index_object(1, self.doc1, attr='Subject')
         pathindex.index_object(1, self.doc1)
 
         self.doc2 = base.DummyContentWithParent(
-            'doc2',
-            subjects=self.subjects_2,
-            parent=self.navroot2
+            'doc2', subjects=self.subjects_2, parent=self.navroot2
         )
         kwindex._index_object(2, self.doc2, attr='Subject')
         pathindex.index_object(2, self.doc2)

@@ -10,7 +10,6 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 import pytz
 
-
 PLMF = MessageFactory('plonelocales')
 
 
@@ -20,9 +19,11 @@ def TimezonesFactory(context, query=None):
 
     This are all timezones supported by pytz.
     """
-    tz_list = [SimpleTerm(value=it, title=PLMF(it, default=it))
-               for it in pytz.all_timezones
-               if query is None or query.lower() in it.lower()]
+    tz_list = [
+        SimpleTerm(value=it, title=PLMF(it, default=it))
+        for it in pytz.all_timezones
+        if query is None or query.lower() in it.lower()
+    ]
     return SimpleVocabulary(tz_list)
 
 
@@ -32,9 +33,11 @@ def CommonTimezonesFactory(context, query=None):
 
     This are the timezones a user would choose from in a form.
     """
-    tz_list = [SimpleTerm(value=it, title=PLMF(it, default=it))
-               for it in pytz.common_timezones
-               if query is None or query.lower() in it.lower()]
+    tz_list = [
+        SimpleTerm(value=it, title=PLMF(it, default=it))
+        for it in pytz.common_timezones
+        if query is None or query.lower() in it.lower()
+    ]
     return SimpleVocabulary(tz_list)
 
 
@@ -53,9 +56,11 @@ def AvailableTimezonesFactory(context, query=None):
             '"available timezones" needs Plone 5.x or plone.app.event '
             'installed.'
         )
-    tz_list = [SimpleTerm(value=it, title=PLMF(it, default=it))
-               for it in registry[reg_key]
-               if query is None or query.lower() in it.lower()]
+    tz_list = [
+        SimpleTerm(value=it, title=PLMF(it, default=it))
+        for it in registry[reg_key]
+        if query is None or query.lower() in it.lower()
+    ]
     return SimpleVocabulary(tz_list)
 
 
@@ -189,8 +194,10 @@ def WeekdaysShortFactory(context):
     return PermissiveVocabulary(items)
 
 
-MONTH_PREFIXES = ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
-                  'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+MONTH_PREFIXES = [
+    'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct',
+    'nov', 'dec'
+]
 
 
 @provider(IVocabularyFactory)

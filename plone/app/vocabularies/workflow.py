@@ -10,7 +10,6 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 from zope.site.hooks import getSite
 
-
 _ = MessageFactory('plone')
 
 
@@ -63,11 +62,9 @@ class WorkflowsVocabulary(object):
             items = [(w.title, w.id) for w in wtool.values()]
             items.sort()
             # All vocabularies return theirs term title as unicode
-            items = [
-                SimpleTerm(i[1], i[1], safe_unicode(i[0]))
-                for i in items
-            ]
+            items = [SimpleTerm(i[1], i[1], safe_unicode(i[0])) for i in items]
         return SimpleVocabulary(items)
+
 
 WorkflowsVocabularyFactory = WorkflowsVocabulary()
 
@@ -135,6 +132,7 @@ class WorkflowStatesVocabulary(object):
             for k, v in items_list
         ]
         return SimpleVocabulary(terms)
+
 
 WorkflowStatesVocabularyFactory = WorkflowStatesVocabulary()
 
@@ -221,10 +219,11 @@ class WorkflowTransitionsVocabulary(object):
                     name = safe_unicode(transition.actbox_name)
 
                     transition_title = translate(
-                        _(name),
-                        context=aq_get(wtool, 'REQUEST', None))
+                        _(name), context=aq_get(wtool, 'REQUEST', None)
+                    )
                     transitions.setdefault(transition.id, []).append(
-                        dict(title=transition_title, wf_name=wf_name))
+                        dict(title=transition_title, wf_name=wf_name)
+                    )
         items = []
         transition_items = transitions.items()
         transition_items.sort(key=lambda transition: transition[0])
@@ -235,5 +234,6 @@ class WorkflowTransitionsVocabulary(object):
             items.append(SimpleTerm(transition_id, transition_id, item_title))
 
         return SimpleVocabulary(items)
+
 
 WorkflowTransitionsVocabularyFactory = WorkflowTransitionsVocabulary()

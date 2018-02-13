@@ -14,8 +14,7 @@ class ImagesTest(unittest.TestCase):
 
     def test_images_scales_vocabulary(self):
         images_scales_voc = getUtility(
-            IVocabularyFactory,
-            'plone.app.vocabularies.ImagesScales'
+            IVocabularyFactory, 'plone.app.vocabularies.ImagesScales'
         )
         scales_list = [item.value for item in images_scales_voc(self.portal)]
         self.assertTrue('thumb' in scales_list)

@@ -54,9 +54,7 @@ class TermWithDescription(SimpleTerm):
 
     def __init__(self, value, token, title, description=None):
         super(TermWithDescription, self).__init__(
-            value,
-            token=token,
-            title=title
+            value, token=token, title=title
         )
         self.description = description
 
@@ -81,13 +79,17 @@ class BrowsableTerm(TermWithDescription):
       True
     """
 
-    def __init__(self, value, token=None, title=None, description=None,
-                 browse_token=None, parent_token=None):
+    def __init__(
+        self,
+        value,
+        token=None,
+        title=None,
+        description=None,
+        browse_token=None,
+        parent_token=None
+    ):
         super(BrowsableTerm, self).__init__(
-            value,
-            token=token,
-            title=title,
-            description=description
+            value, token=token, title=title, description=description
         )
         self.browse_token = browse_token
         self.parent_token = parent_token

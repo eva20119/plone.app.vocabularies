@@ -21,9 +21,9 @@ class ActionCategoriesVocabulary(object):
             portal = context.portal_url.getPortalObject()
             categories = portal.portal_actions.objectIds()
         categories.sort()
-        return SimpleVocabulary(
-            [SimpleTerm(cat, title=cat) for cat in categories]
-        )
+        return SimpleVocabulary([
+            SimpleTerm(cat, title=cat) for cat in categories
+        ])
 
 
 ActionCategoriesVocabularyFactory = ActionCategoriesVocabulary()
@@ -48,5 +48,6 @@ class PortalActionCategoriesVocabulary(object):
                 title = category
             terms.append(SimpleTerm(category, title=title))
         return SimpleVocabulary(terms)
+
 
 PortalActionCategoriesVocabularyFactory = PortalActionCategoriesVocabulary()

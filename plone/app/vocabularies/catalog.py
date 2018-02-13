@@ -28,7 +28,6 @@ import os
 import six
 import warnings
 
-
 try:
     from zope.formlib.interfaces import ISourceQueryView
 except ImportError:
@@ -252,8 +251,11 @@ class SearchableTextSourceBinder(object):
         self.default_query = default_query
 
     def __call__(self, context):
-        return SearchableTextSource(context, base_query=self.query.copy(),
-                                    default_query=self.default_query)
+        return SearchableTextSource(
+            context,
+            base_query=self.query.copy(),
+            default_query=self.default_query
+        )
 
 
 @implementer(ITerms, ISourceQueryView)
@@ -354,11 +356,14 @@ class QuerySearchableTextSourceView(object):
             if brain.is_folderish:
                 browse_token = value
             parent_token = '/'.join(value.split('/')[:-1])
-        return BrowsableTerm(value, token=token,
-                             title=title.decode(self.context.encoding),
-                             description=value,
-                             browse_token=browse_token,
-                             parent_token=parent_token)
+        return BrowsableTerm(
+            value,
+            token=token,
+            title=title.decode(self.context.encoding),
+            description=value,
+            browse_token=browse_token,
+            parent_token=parent_token
+        )
 
     def getValue(self, token):
         if token not in self.context:
@@ -379,8 +384,9 @@ class QuerySearchableTextSourceView(object):
 
         # check whether a browse button was pressed
         browse_prefix = name + '.browse.'
-        browse = tuple(x for x in self.request.form
-                       if x.startswith(browse_prefix))
+        browse = tuple(
+            x for x in self.request.form if x.startswith(browse_prefix)
+        )
         if len(browse) == 1:
             path = browse[0][len(browse_prefix):]
             query = 'path:' + path
@@ -521,6 +527,7 @@ class CatalogVocabulary(SlicableVocabulary):
     @classmethod
     def fromItems(cls, query, context, *interfaces):
         return cls(query)
+
     fromValues = fromItems
 
     @classmethod
@@ -570,8 +577,10 @@ class CatalogVocabulary(SlicableVocabulary):
             slice_inst = index
             start = slice_inst.start
             stop = slice_inst.stop
-            return [self.createTerm(brain, None)
-                    for brain in self.brains[start:stop]]
+            return [
+                self.createTerm(brain, None)
+                for brain in self.brains[start:stop]
+            ]
         else:
             return self.createTerm(self.brains[index], None)
 
@@ -606,6 +615,7 @@ class CatalogVocabularyFactory(object):
       ['/dummy/sub-site', '/dummy/sub-site/ghij']
 
     """
+
     # We want to get rid of this and use CatalogSource instead,
     # but we can't in Plone versions that support
     # plone.app.widgets < 1.6.0

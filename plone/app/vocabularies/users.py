@@ -16,7 +16,6 @@ from zope.schema.vocabulary import SimpleTerm
 import six
 import warnings
 
-
 try:
     from zope.formlib.interfaces import ISourceQueryView
 except ImportError:
@@ -34,7 +33,8 @@ def _createUserTerm(userid, context=None, acl_users=None):
     if user:
         fullname = user.getProperty('fullname', None) or userid
     token = userid.encode('unicode_escape') if isinstance(
-        userid, six.text_type) else userid
+        userid, six.text_type
+    ) else userid
     return SimpleTerm(userid, token, fullname)
 
 
@@ -97,10 +97,13 @@ class UsersVocabulary(SlicableVocabulary):
 
     @classmethod
     def fromItems(cls, items, context, *interfaces):
+
         def lazy(items):
             for item in items:
                 yield cls.createTerm(item['userid'], context)
+
         return cls(lazy(items), context, *interfaces)
+
     fromValues = fromItems
 
     @classmethod
@@ -112,6 +115,7 @@ class UsersVocabulary(SlicableVocabulary):
 
     def getTerm(self, userid):
         return _createUserTerm(userid, acl_users=self._users)
+
     getTermByToken = getTerm
 
     def __iter__(self):
@@ -163,6 +167,7 @@ class UsersFactory(object):
     >>> [x.title for x in factory(context, '1')]
     ['user1']
     """
+
     def should_search(self, query):
         ''' Test if we should search for users
         '''

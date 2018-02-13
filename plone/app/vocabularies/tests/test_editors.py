@@ -20,8 +20,7 @@ class AvailableEditorsTest(unittest.TestCase):
         registry.registerInterface(IEditingSchema, prefix='plone')
         registry.records['plone.available_editors']
         vocab_util = getUtility(
-            IVocabularyFactory,
-            'plone.app.vocabularies.AvailableEditors'
+            IVocabularyFactory, 'plone.app.vocabularies.AvailableEditors'
         )
         editors = vocab_util(self.portal)
         self.assertEqual(2, len(editors.by_token))

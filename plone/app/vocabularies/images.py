@@ -8,7 +8,6 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 import six
 
-
 PMF = MessageFactory('plone')
 
 
@@ -23,6 +22,10 @@ def ScalesVocabulary(context):
             translated = PMF(
                 'imagescale_{0:s}'.format(scale),
                 default='{0:s} ${{width}}x${{height}}'.format(scale),
-                mapping={'width': str(width), 'height': str(height)})
+                mapping={
+                    'width': str(width),
+                    'height': str(height)
+                }
+            )
             terms.append(SimpleTerm(scale, scale, translated))
     return SimpleVocabulary(terms)
